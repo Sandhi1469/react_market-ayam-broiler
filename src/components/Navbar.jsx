@@ -17,7 +17,7 @@ export default function Navbar({ cartCount = 0 }) {
       <Link to="/" className="font-bold text-xl tracking-tight flex items-center gap-2">
         <span>🐔 BroilerHub</span>
         <span className="text-[10px] bg-amber-800 text-amber-100 px-2 py-0.5 rounded-full font-normal hidden sm:inline">
-          Pasar Broiler
+          Pasar Ayam Broiler
         </span>
       </Link>
 
