@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import { AppContext } from "../context/AppContext";
 
 // Layout utama untuk halaman katalog dan pembeli
-export default function MainLayout({ cartCount }) {
+export default function MainLayout({ cartCount, contextValue }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
