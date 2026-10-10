@@ -1,10 +1,11 @@
-import React, { useMemo } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import React, { useMemo, useContext } from "react";
+import { Link } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 // Halaman Dashboard Katalog Produk
 export default function Dashboard() {
-  // Mengambil state kandang dan filter via Outlet context
-  const { kandangList, search, kategoriBerat } = useOutletContext();
+  // Mengambil state kandang dan filter via React Context
+  const { kandangList, search, kategoriBerat } = useContext(AppContext);
 
   // Filter Data Kandang berdasarkan search lokasi & kategori berat
   const filteredKandang = useMemo(() => {

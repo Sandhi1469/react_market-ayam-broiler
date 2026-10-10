@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { useParams, Link, useNavigate, useOutletContext } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 export default function ProductDetail() {
   // Mengambil parameter ID kandang dari URL
   const { id } = useParams();
   const navigate = useNavigate();
-  const { kandangList, addToCart } = useOutletContext();
+  const { kandangList, addToCart } = useContext(AppContext);
 
   // Mencari data kandang berdasarkan ID di URL
   const kandang = kandangList.find((k) => k.id === id);

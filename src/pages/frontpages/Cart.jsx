@@ -1,10 +1,11 @@
-import React from "react";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 export default function Cart() {
   const navigate = useNavigate();
-  // Mengambil state cart dan fungsi manipulasi via Outlet context
-  const { cart, updateCartQty, removeFromCart } = useOutletContext();
+  // Mengambil state cart dan fungsi manipulasi via React Context
+  const { cart, updateCartQty, removeFromCart } = useContext(AppContext);
 
   // Menghitung grand total bobot dan grand total biaya
   const grandTotalBobotKg = cart.reduce((acc, item) => acc + item.totalBobotKg, 0);

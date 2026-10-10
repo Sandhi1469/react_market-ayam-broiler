@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  // Mengambil state cart, kandangList, dan fungsi pembuat order
-  const { cart, checkoutCart } = useOutletContext();
+  // Mengambil state cart dan fungsi checkout via React Context
+  const { cart, checkoutCart } = useContext(AppContext);
 
   const [namaPembeli, setNamaPembeli] = useState("");
   const [kontakPembeli, setKontakPembeli] = useState("");

@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { AppContext } from "../context/AppContext";
 
 // Layout utama untuk halaman katalog dan pembeli
-export default function MainLayout({ cartCount, contextValue }) {
+export default function MainLayout({ cartCount }) {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
-  const { search, setSearch, kategoriBerat, setKategoriBerat } = contextValue || {};
+  const { search, setSearch, kategoriBerat, setKategoriBerat } = useContext(AppContext);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">

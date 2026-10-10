@@ -1,9 +1,9 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 
 export default function AdminDashboard() {
-  // Mengambil state terpusat via Outlet context
-  const { kandangList, setKandangList, orders, updateOrderStatus } = useOutletContext();
+  // Mengambil state terpusat via React Context
+  const { kandangList, setKandangList, orders, updateOrderStatus } = useContext(AppContext);
 
   // 1. Perhitungan Metrik Ringkas Peternakan
   // Total akumulasi seluruh sisa stok ayam aktif di kandang

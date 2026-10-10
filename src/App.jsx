@@ -9,6 +9,7 @@ import Checkout from "./pages/frontpages/Checkout";
 import AdminDashboard from "./pages/adminpages/AdminDashboard";
 import AboutPage from "./pages/adminpages/AboutPage";
 import { initialKandangData, initialOrdersData } from "./data/kandangData";
+import { AppContext } from "./context/AppContext";
 
 export default function App() {
   // State Utama Aplikasi E-Commerce
@@ -123,60 +124,61 @@ export default function App() {
     );
   };
 
+  // Kumpulan state dan fungsi yang disediakan melalui Context
+  const contextValue = {
+    kandangList,
+    setKandangList,
+    orders,
+    setOrders,
+    cart,
+    addToCart,
+    updateCartQty,
+    removeFromCart,
+    checkoutCart,
+    updateOrderStatus,
+    search,
+    setSearch,
+    kategoriBerat,
+    setKategoriBerat
+  };
+
   return (
-    <Routes>
-      {/* Rute Halaman Utama (MainLayout) */}
-      <Route
-        path="/"
-        element={
-          <MainLayout
-            cartCount={cart.length}
-            contextValue={{
-              kandangList,
-              setKandangList,
-              orders,
-              cart,
-              addToCart,
-              updateCartQty,
-              removeFromCart,
-              checkoutCart,
-              search,
-              setSearch,
-              kategoriBerat,
-              setKategoriBerat
-            }}
-          />
-        }
-      >
-        <Route index element={<Dashboard />} />
-        <Route path="product/:id" element={<ProductDetail />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
-      </Route>
+    <AppContext.Provider value={contextValue}>
+      <Routes>
+        {/* Rute Halaman Utama (MainLayout) */}
+        <Route
+          path="/"
+          element={
+            <MainLayout
+              cartCount={cart.length}
+              contextValue={contextValue}
+            />
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
 
-      {/* Rute Halaman Admin (AdminLayout) */}
-      <Route
-        path="/admin"
-        element={
-          <AdminLayout
-            contextValue={{
-              kandangList,
-              setKandangList,
-              orders,
-              setOrders,
-              updateOrderStatus
-            }}
-          />
-        }
-      >
-        <Route index element={<AdminDashboard />} />
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="about" element={<AboutPage />} />
-      </Route>
+        {/* Rute Halaman Admin (AdminLayout) */}
+        <Route
+          path="/admin"
+          element={
+            <AdminLayout
+              contextValue={contextValue}
+            />
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="about" element={<AboutPage />} />
+        </Route>
 
-      {/* Redirect rute /peternak ke /admin/dashboard */}
-      <Route path="/peternak" element={<Navigate to="/admin/dashboard" replace />} />
-    </Routes>
+        {/* Redirect rute /peternak ke /admin/dashboard */}
+        <Route path="/peternak" element={<Navigate to="/admin/dashboard" replace />} />
+      </Routes>
+    </AppContext.Provider>
   );
 }
 
